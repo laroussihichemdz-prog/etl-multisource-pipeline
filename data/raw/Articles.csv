@@ -1,0 +1,37 @@
+IDarticle,IDfamily,Name,Price,cost
+00001,F2,Classic Burger,5.99,2.1
+00002,F2,Chicken Burger,6.49,2.3
+00003,F2,Meat Burger,7.49,2.8
+00004,F2,Fish Burger,6.99,2.5
+00005,F2,Veggie Burger,5.49,1.8
+00006,F2,Double Burger,8.99,3.4
+00007,F1,Caesar Salad,4.99,1.6
+00008,F1,Mixed Salad,4.49,1.4
+00009,F1,Green Salad,3.99,1.2
+00010,F1,Carrot Salad,3.49,1.0
+00011,F4,Classic Sandwich,4.99,1.7
+00012,F4,Tuna Sandwich,5.49,1.9
+00013,F4,Chicken Sandwich,5.99,2.1
+00014,F4,Meat Sandwich,6.49,2.3
+00015,F4,Three Cheese Sandwich,5.99,2.0
+00016,F3,Margherita,8.99,5.0
+00017,F3,Pepperoni,9.99,3.2
+00018,F3,BBQ Chicken,10.49,3.5
+00019,F3,Four Cheese,10.99,3.8
+00020,F3,Veggie Pizza,8.49,2.6
+00021,F5,Crispy Chicken,6.99,2.4
+00022,F5,Crispy Strips x4,5.49,1.8
+00023,F5,Crispy Strips x8,9.49,3.2
+00024,F5,Crispy Wrap,6.49,2.2
+00025,F5,Crispy Burger,7.49,2.6
+00026,F6,Chocolate Brownie,3.49,0.9
+00027,F6,Cheesecake,3.99,1.1
+00028,F6,Ice Cream,2.99,0.7
+00029,F6,Apple Pie,3.49,0.9
+00030,F6,Cookie,1.99,0.5
+00031,F7,Coca-Cola,2.49,0.5
+00032,F7,Sprite,2.49,0.5
+00033,F7,Orange Juice,2.99,0.7
+00034,F7,Water,1.49,0.2
+00035,F7,Milkshake,3.99,1.0
+00036,F7,Iced Tea,2.49,0.5

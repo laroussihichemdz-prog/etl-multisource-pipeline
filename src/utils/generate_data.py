@@ -133,7 +133,14 @@ def create_orders_line(df_orders,df_articles):
             line_counter +=1
     df = pd.DataFrame(lines)    
     return df  
- 
+def inject_errors(df,colonne,valeur,Tfrac):
+    indice = df.sample(frac=Tfrac).index 
+    df.loc[indice,colonne]=valeur
+    return df
+
+
+
+
 def save_csv(df,name):
     df.to_csv(f'data/raw/{name}', index=False, sep=",")
     
@@ -148,7 +155,14 @@ dfA =  create_articles()
 save_csv(dfA,"Articles.csv")
 
 dfO = create_orders()
+dfO=inject_errors(dfO, 'modepaiement', None,0.03)
+dfO=inject_errors(dfO, 'remise', 999,0.03)
 save_csv(dfO,"orders.csv")
 
 dfOL = create_orders_line(dfO,dfA)
+# Sur OrdersLines
+dfOL=inject_errors(dfOL, 'unit_price', 0,0.03)
+dfOL=inject_errors(dfOL, 'quantity', 0,0.03)
 save_csv(dfOL,"OrdersLines.csv")
+
+

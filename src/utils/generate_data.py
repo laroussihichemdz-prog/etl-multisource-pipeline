@@ -48,7 +48,7 @@ def create_articles():
 {'IDarticle':'00015','IDfamily':'F4','Name':'Three Cheese Sandwich','Price':5.99,'cost':2.00},
 
 # Pizza
-{'IDarticle':'00016','IDfamily':'F3','Name':'Margherita','Price':8.99,'cost':5.0},
+{'IDarticle':'00016','IDfamily':'F3','Name':'Margherita','Price':8.99,'cost':2.80},
 {'IDarticle':'00017','IDfamily':'F3','Name':'Pepperoni','Price':9.99,'cost':3.20},
 {'IDarticle':'00018','IDfamily':'F3','Name':'BBQ Chicken','Price':10.49,'cost':3.50},
 {'IDarticle':'00019','IDfamily':'F3','Name':'Four Cheese','Price':10.99,'cost':3.80},
@@ -78,16 +78,77 @@ def create_articles():
     ]
     df = pd.DataFrame(article)
     return df
+def create_orders():
+    orders = []
+    start_date=datetime(2024,1,1)
+    IdC=1
+    for id_restaurant,nb_orders in [('R1',80),('R2',50)]:
+        for  day in range(90):
+            date = start_date + timedelta(days=day)
+            day = date.weekday()
+            if day == 4 :
+                adjusted_orders = int(nb_orders* 1.3)
+            elif day == 5 :
+                adjusted_orders = int(nb_orders * 2.1)   
+            elif day in [0,1,2,3,6]:
+                adjusted_orders = int(nb_orders*0.7)
+            else: 
+                adjusted_orders=nb_orders
+                    
 
+            for i in range(adjusted_orders):
+                
+                heure = random.randint(10, 23)
+                minute = random.randint(0, 59)
+                heure_str = f"{heure:02d}:{minute:02d}:00"
+
+                orders.append ({
+                    'IDOrder': f"C{IdC:04d}",
+                    'IDrestaurant': id_restaurant,
+                    'IDclient': 1,
+                    'date': date ,
+                    'heure': heure_str,
+                    'modepaiement': random.choice(['Cash','Card']),
+                    'remise': random.choice([0,0,0,0,10,20,30,40]),
+                    'IDcaissier': random.choice([1,2,3]),
+                    'etatpaiement':random.choice( [1,0])  
+                    })
+                IdC += 1 
+    df = pd.DataFrame(orders)
+    return df
+def create_orders_line(df_orders,df_articles):
+    lines=[]
+    line_counter=1
+    for index,row in df_orders.iterrows():
+        nb_articles = random.choice([1,1,2,2,2,2,3,3,3,5,8]) 
+        for  _ in range(nb_articles):
+            article=df_articles.sample(1).iloc[0]
+            lines.append ({
+            'IDlines' :line_counter,
+            'IDOrder': row['IDOrder'] ,  
+            'quantity':random.choice([1,1,1,1,2,2,2,2,3,3,4,4]),
+            'article_id': article['IDarticle'],
+            'unit_price': article['Price'] 
+            })
+            line_counter +=1
+    df = pd.DataFrame(lines)    
+    return df  
+ 
 def save_csv(df,name):
     df.to_csv(f'data/raw/{name}', index=False, sep=",")
     
 
-df =create_restautant()
-save_csv(df,"Restautrants.csv")
+dfR =create_restautant()
+save_csv(dfR,"Restautrants.csv")
 
-df = create_families()
-save_csv(df,"Families.csv")
+dfF = create_families()
+save_csv(dfF,"Families.csv")
 
-df =  create_articles()
-save_csv(df,"Articles.csv")
+dfA =  create_articles()
+save_csv(dfA,"Articles.csv")
+
+dfO = create_orders()
+save_csv(dfO,"orders.csv")
+
+dfOL = create_orders_line(dfO,dfA)
+save_csv(dfOL,"OrdersLines.csv")

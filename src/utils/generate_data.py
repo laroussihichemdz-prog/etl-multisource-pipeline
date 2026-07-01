@@ -109,7 +109,7 @@ def create_orders():
                     'date': date ,
                     'heure': heure_str,
                     'modepaiement': random.choice(['Cash','Card']),
-                    'remise': random.choice([0,0,0,0,10,20,30,40]),
+                    'remise': float(random.choice([0,0,0,0,10,20,30,40])),
                     'IDcaissier': random.choice([1,2,3]),
                     'etatpaiement':random.choice( [1,0])  
                     })
